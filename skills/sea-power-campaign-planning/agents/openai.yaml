@@ -1,0 +1,4 @@
+display_name: Sea Power Campaign Planning
+short_description: Plan and validate Sea Power Task Force Mode campaign generation.
+default_prompt: Use this skill to plan or validate Sea Power dynamic campaign files, generated missions, rosters, mods, factions, and intel-driven mission logic.
+

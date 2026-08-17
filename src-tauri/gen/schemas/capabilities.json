@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"Default capability for the main window. Filesystem access stays behind explicit high-level commands (validate_game_path, scan_streaming_assets); the dialog plugin is allowed only for folder picking.","local":true,"windows":["main"],"permissions":["core:default","dialog:allow-open"]}}

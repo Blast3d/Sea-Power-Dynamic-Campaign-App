@@ -1,0 +1,293 @@
+﻿/* Sea Power Dynamic Campaign â€” scaffold styles (dark ops-room theme). */
+
+:root {
+  --bg: #0b1a2c;
+  --bg-panel: #102138;
+  --bg-panel-alt: #152a45;
+  --border: #24405f;
+  --text: #d7e3f0;
+  --text-dim: #8aa3bd;
+  --accent: #58a6ff;
+  --accent-gold: #f0c850;
+  --player: #4cc38a;
+  --enemy: #e5534b;
+  --neutral: #9aa7b3;
+  --error: #e5534b;
+  --warning: #f0c850;
+  --info: #58a6ff;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+button {
+  background: var(--bg-panel-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); color: #06121f; font-weight: 600; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+input, select {
+  background: #0d1f35;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 13px;
+  width: 100%;
+}
+
+label { display: block; margin-bottom: 4px; color: var(--text-dim); font-size: 12px; }
+
+h1, h2, h3 { margin: 0 0 8px; }
+h1 { font-size: 20px; }
+h2 { font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+h3 { font-size: 13px; color: var(--text-dim); }
+
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+.badge.seed { background: #5a4a12; color: var(--accent-gold); }
+.badge.discovered { background: #14452e; color: var(--player); }
+.badge.error { background: #58201d; color: #ff8a80; }
+.badge.warning { background: #5a4a12; color: var(--accent-gold); }
+.badge.info { background: #163a5f; color: var(--accent); }
+
+/* Setup screen */
+.setup-screen {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 24px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.setup-screen .field { margin-bottom: 14px; }
+.setup-screen .row { display: flex; gap: 12px; }
+.setup-screen .row > div { flex: 1; }
+.path-status { margin-top: 6px; font-size: 12px; }
+.path-status.ok { color: var(--player); }
+.path-status.bad { color: var(--error); }
+.path-status.unknown { color: var(--text-dim); }
+
+.side-cards { display: flex; gap: 10px; margin: 6px 0 2px; }
+.side-card {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel-alt);
+  cursor: pointer;
+  text-align: left;
+}
+.side-card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.side-card .side-name { font-weight: 600; }
+.side-card .side-note { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+
+/* Planning shell layout */
+.shell {
+  display: grid;
+  grid-template-rows: 48px 1fr;
+  grid-template-columns: 300px 1fr 340px;
+  grid-template-areas:
+    "topbar topbar topbar"
+    "left map right";
+  height: 100vh;
+}
+.topbar {
+  grid-area: topbar;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+.topbar .title { font-weight: 700; }
+.topbar .clock { color: var(--accent-gold); font-variant-numeric: tabular-nums; }
+.topbar .spacer { flex: 1; }
+
+.sidebar {
+  overflow-y: auto;
+  background: var(--bg-panel);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sidebar.left { grid-area: left; border-right: 1px solid var(--border); }
+.sidebar.right { grid-area: right; border-left: 1px solid var(--border); }
+
+.map-area { grid-area: map; position: relative; }
+.map-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(11, 26, 44, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.map-controls button {
+  width: 34px;
+  height: 28px;
+  padding: 0;
+  font-weight: 700;
+}
+.map-controls button[title="Fit theater"] { width: 42px; }
+
+.map-legend {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(11, 26, 44, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 11px;
+  z-index: 5;
+}
+.map-legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+
+.panel {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.panel .panel-body { margin-top: 6px; }
+
+.stat-row { display: flex; justify-content: space-between; padding: 2px 0; font-size: 13px; }
+.stat-row .k { color: var(--text-dim); }
+.stat-row .v { font-variant-numeric: tabular-nums; }
+.stat-row .delta { font-size: 11px; margin-left: 6px; }
+.delta.pos { color: var(--player); }
+.delta.neg { color: var(--enemy); }
+
+.list-item {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  margin-bottom: 8px;
+  background: var(--bg-panel);
+}
+.list-item .item-title { font-weight: 600; font-size: 13px; }
+.list-item .item-sub { font-size: 11.5px; color: var(--text-dim); margin-top: 3px; }
+
+.issue { display: flex; gap: 8px; align-items: flex-start; padding: 5px 0; font-size: 12.5px; }
+.issue .msg { flex: 1; }
+
+.mission-drawer {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  max-height: 42%;
+  overflow-y: auto;
+  background: rgba(13, 27, 46, 0.96);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  z-index: 6;
+}
+.mission-drawer .drawer-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.mission-drawer .drawer-head .spacer { flex: 1; }
+.mission-cards { display: flex; gap: 10px; }
+.mission-card {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+}
+.mission-card .threats { margin: 6px 0; font-size: 11px; color: var(--text-dim); }
+
+
+
+
+
+
+
+
+/* Real offline SVG map */
+.svg-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a2138;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.svg-map:active { cursor: grabbing; }
+.map-ocean { fill: #0a2138; }
+.map-graticule {
+  fill: none;
+  stroke: #42698e;
+  stroke-width: 0.8;
+  opacity: 0.45;
+}
+.map-land {
+  fill: #2d4a31;
+  stroke: #b9c7b4;
+  stroke-width: 1.1;
+  opacity: 1;
+}
+.map-country {
+  fill: none;
+  stroke: #8ea189;
+  stroke-width: 0.55;
+  opacity: 0.9;
+}
+.map-route {
+  fill: none;
+  stroke: #58a6ff;
+  stroke-width: 2.4;
+  stroke-dasharray: 7 7;
+  opacity: 1;
+}
+.svg-marker text {
+  fill: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #06121f;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.svg-point {
+  stroke: #06121f;
+  stroke-width: 2.5;
+}
+.svg-point.player { fill: var(--player); }
+.svg-point.enemy { fill: var(--enemy); }
+.svg-point.neutral { fill: var(--neutral); }
+.svg-point.resource { filter: drop-shadow(0 0 3px rgba(240, 200, 80, 0.65)); }
+.svg-point.tf { stroke-width: 2; }

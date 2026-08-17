@@ -1,0 +1,3 @@
+﻿display_name: Sea Power Repo Workflow
+short_description: Preserve user edits and keep Sea Power repo work local-first unless asked otherwise.
+default_prompt: Use this skill before changing the Sea Power Dynamic Campaign App repo, especially when docs, skills, code, or git state may be affected.
